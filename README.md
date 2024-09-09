@@ -4,14 +4,14 @@
 
 ## Configure [Branch](dashboard.branch.io) dashboard
 
-1. Configure Branch Dashboard
+# 1. Configure Branch Dashboard
 
 - iOS [Branch Dashboard Configuration](https://help.branch.io/developers-hub/docs/ios-basic-integration#1-configure-branch-dashboard)
 - Android [Branch Dashboard Configuration](https://help.branch.io/developers-hub/docs/android-basic-integration#1-configure-branch-dashboard)
 
 Make sure to [configure your default link settings](https://help.branch.io/using-branch/docs/configure-default-link-behaviors) as part of the setup process.
 
-2. Install Branch
+# 2. Install Branch
 
 ```bash
     yarn add react-native-branch
@@ -30,19 +30,19 @@ Make sure to [configure your default link settings](https://help.branch.io/using
     end
 ```
 
-3. Configure App
+# 3. Configure App
 
 ### For Android
 
 1. [Add](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) dependencies.
 2. [Configure](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) `AndroidManifest.xml` file.
 3. Add a branch.json file to your project, which you will use to access certain Branch configuration settings.
-   Create an empty file called `branch.json`.
-   Place the file in the `src/main/assets` folder of your app.
+   - Create an empty file called `branch.json`.
+   - Place the file in the `src/main/assets` folder of your app.
 
 ## validate SDK Integration
 
-```javascript
+```bash
     IntegrationValidator.validate(this)
 ```
 

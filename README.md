@@ -13,13 +13,13 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 2. Install Branch
 
-```bash
+```javascript
     yarn add react-native-branch
 ```
 
 ## iOS App With CocoaPods
 
-```bash
+```javascript
     platform :ios, '11.0'
 
     target 'APP_NAME' do

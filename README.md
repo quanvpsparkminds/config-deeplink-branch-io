@@ -40,6 +40,17 @@ Make sure to [configure your default link settings](https://help.branch.io/using
    - Create an empty file called `branch.json`.
    - Place the file in the `src/main/assets` folder of your app.
 
+### For iOS
+
+1. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#2-configure-bundle-identifier) bundle identifier.
+2. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#3-configure-associated-domains) associated domains.
+3. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#4-configure-infoplist) `Info.plist` file.
+4. Add a `branch.json` file to your project, which you will use to access certain Branch configuration settings:
+   - Create an empty file called `branch.json`.
+   - Add the file to your project using Xcode. Within your project, navigate to **File → Add Files**.
+   - Select the `branch.json` file and make sure every target in your project that uses Branch is selected.
+   - Click **Add**.
+
 ## validate SDK Integration
 
 ```bash

@@ -34,6 +34,12 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 ### For Android
 
+1. [Add](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) dependencies.
+2. [Configure](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) `AndroidManifest.xml` file.
+3. Add a branch.json file to your project, which you will use to access certain Branch configuration settings.
+   Create an empty file called `branch.json`.
+   Place the file in the `src/main/assets` folder of your app.
+
 ## validate SDK Integration
 
 ```bash

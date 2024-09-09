@@ -36,7 +36,7 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 ## validate SDK Integration
 
-```bash
+```javascript
     IntegrationValidator.validate(this)
 ```
 

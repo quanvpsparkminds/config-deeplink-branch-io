@@ -188,7 +188,7 @@ Make sure to comment out or remove `validateSDKIntegration()` in your production
 
 For more about the `validateSDKIntegration()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)
 
-### For iOS
+### For Android
 
 1. The [Integration Status](https://help.branch.io/developers-hub/docs/ios-testing#integration-status-tab) tab in the [Branch Dashboard](https://dashboard.branch.io/integration?_gl=1*1re0ydv*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzUyMDIuNjAuMC4w).
 
@@ -203,16 +203,10 @@ import io.branch.referral.validators.IntegrationValidator
 
 ...
 
-override fun onCreate() {
-    super.onCreate()
-    RNBranchModule.getAutoInstance(this) <--this code-->
-    SoLoader.init(this, false)
-    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
-      // If you opted-in for the New Architecture, we load the native entry point for this app.
-      load()
-    }
-    RNBranchModule.enableLogging();
-
+override fun onStart() {
+    super.onStart()
+    RNBranchModule.initSession(getIntent().getData(), this)
+    IntegrationValidator.validate(this) <--- this code --->
   }
 ```
 

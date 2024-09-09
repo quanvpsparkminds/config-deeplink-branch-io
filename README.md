@@ -256,6 +256,12 @@ This method will check to ensure that the Branch keys, package name, URI schemes
 
 Check your Xcode logs to make sure all the SDK integration tests pass.
 
+------------------- Initiating Branch integration verification ---------------------------
+
+> - Checking for URI scheme correctness ... Passed
+> - Checking for bundle identifier correctness ... Passed
+> - Checking for iOS Team ID correctness ... Passed
+
 Make sure to comment out or remove `validateSDKIntegration()` in your production build.
 
 For more about the `validateSDKIntegration()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)
@@ -268,7 +274,7 @@ For more about the `validateSDKIntegration()` method, visit our [blog](https://w
 
 Another simple way to test the status of your Branch Android SDK integration is using the built-in `IntegrationValidator.validate()` method.
 
-To use this method, add the following code to your MainActivity's onStart():
+To use this method, add the following code to your MainActivity's `onStart()`:
 
 ```kotlin
 import io.branch.referral.validators.IntegrationValidator

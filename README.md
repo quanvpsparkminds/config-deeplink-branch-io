@@ -214,6 +214,19 @@ This method will check to ensure that the Branch keys, package name, URI schemes
 
 Check your ADB Logcat to make sure all the SDK integration tests pass.
 
+------------------- Initiating Branch integration verification ---------------------------
+
+> - Verifying Branch instance creation ... Passed
+> - Checking Branch keys ... Passed
+> - Verifying application package name ... Passed
+> - Checking Android Manifest for URI based deep link config ... Passed
+> - Verifying URI based deep link config with Branch dash board. ... Passed
+> - Verifying intent for receiving URI scheme. ... Passed
+> - Checking AndroidManifest for AppLink config. ... Passed
+> - Verifying any supported custom link domains. ... Passed
+> - Verifying default link domains integrations. ... Passed
+> - Verifying alternate link domains integrations. ... Passed Passed
+
 Make sure to comment out or remove `IntegrationValidator.validate()` in your production build.
 
 For more about the `IntegrationValidator.validate()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)

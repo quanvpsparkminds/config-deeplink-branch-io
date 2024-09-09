@@ -57,31 +57,39 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 To initialize Branch on iOS, add the following to your app's AppDelegate file:
 
+- Import RNBranch
+
 ```c
-#import "AppDelegate.h"
 #import <RNBranch/RNBranch.h>
+```
 
-@implementation AppDelegate
+- Initialize the Branch Session
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // [RNBranch useTestInstance];
-    [RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
-    NSURL *jsCodeLocation;
-    //...
+```c
+func application(_ application: UIApplication, didFinishLaunchingWithOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  // RNBranch.useTestInstance()
+  RNBranch.initSession(launchOptions: launchOptions)
+
+  return true
 }
+```
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-  [RNBranch application:app openURL:url options:options];
-  return YES;
+- Add openURL() Method
+
+```c
+func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+  RNBranch.application(app, open:url, options:options)
+  return true
 }
+```
 
-- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
-  [RNBranch continueUserActivity:userActivity];
-  return YES;
+- Add continueUserActivity() Method
+
+```c
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+  RNBranch.continue(userActivity)
+  return true
 }
-
-@end
 ```
 
 ### Branch Initialization on Android
@@ -90,11 +98,30 @@ To initialize Branch on Android, you need to:
 
 1. Add Branch to your `MainApplication.kt` file (or `MainApplication.java` for older apps):
 
+- Import from RNBranch
+
 ```kotlin
 import io.branch.rnbranch.*
+```
 
-// ...
+- Override onCreate() Function
 
+```kotlin
+override fun onCreate() {
+    super.onCreate()
+    RNBranchModule.getAutoInstance(this)
+
+    SoLoader.init(this, false)
+    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+        // If you opted-in for the New Architecture, we load the native entry point for this app
+        load()
+    }
+}
+```
+
+- Enable Logging (Enable Branch logging for debugging)
+
+```kotlin
 override fun onCreate() {
     super.onCreate()
     RNBranchModule.getAutoInstance(this)
@@ -105,34 +132,36 @@ override fun onCreate() {
         load()
     }
 
-    RNBranchModule.enableLogging();
+    RNBranchModule.enableLogging(); <--this code-->
 
-    ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager)
 }
-
-// ...
 ```
 
 2. Add Branch to your `MainActivity.kt` file (or `MainActivity.java` for older apps):
 
+- Import from RNBranch
+
 ```kotlin
 import io.branch.rnbranch.*
-import android.content.Intent
+```
 
-// ...
+- Override onStart() Function
 
+```kotlin
 override fun onStart() {
     super.onStart()
     RNBranchModule.initSession(getIntent().getData(), this)
 }
+```
 
+- Override onNewIntent() Function
+
+```kotlin
 override fun onNewIntent(intent: Intent?) {
     super.onNewIntent(intent)
     setIntent(intent)
     RNBranchModule.reInitSession(this)
 }
-
-// ...
 ```
 
 ## validate SDK Integration

@@ -14,6 +14,7 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 ```bash
     yarn add react-native-branch
 ```
+**Note**: The `react-native-branch` module requires your `react-native` version to be greater than or equal to `0.60`
 
 ## iOS App With CocoaPods
 
@@ -264,7 +265,7 @@ Check your Xcode logs to make sure all the SDK integration tests pass.
 > - Checking for bundle identifier correctness ... Passed
 > - Checking for iOS Team ID correctness ... Passed
 
-**Make sure to comment out or remove `validateSDKIntegration()` in your production build.**
+**Make sure to comment out or remove** `validateSDKIntegration()` **in your production build.**
 
 For more about the `validateSDKIntegration()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)
 
@@ -307,6 +308,6 @@ Check your ADB Logcat to make sure all the SDK integration tests pass.
 > - Verifying default link domains integrations. ... Passed
 > - Verifying alternate link domains integrations. ... Passed Passed
 
-**Make sure to comment out or remove `IntegrationValidator.validate()` in your production build.**
+**Make sure to comment out or remove** `IntegrationValidator.validate()` **in your production build.**
 
 For more about the `IntegrationValidator.validate()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)

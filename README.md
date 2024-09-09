@@ -19,7 +19,7 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 ## iOS App With CocoaPods
 
-```bash
+```ruby
     platform :ios, '11.0'
 
     target 'APP_NAME' do
@@ -34,14 +34,6 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 ### iOS Configuration
 
-1. [Add](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) dependencies.
-2. [Configure](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) `AndroidManifest.xml` file.
-3. Add a branch.json file to your project, which you will use to access certain Branch configuration settings.
-   - Create an empty file called `branch.json`.
-   - Place the file in the `src/main/assets` folder of your app.
-
-### Android Configuration
-
 1. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#2-configure-bundle-identifier) bundle identifier.
 2. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#3-configure-associated-domains) associated domains.
 3. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#4-configure-infoplist) `Info.plist` file.
@@ -50,6 +42,86 @@ Make sure to [configure your default link settings](https://help.branch.io/using
    - Add the file to your project using Xcode. Within your project, navigate to **File → Add Files**.
    - Select the `branch.json` file and make sure every target in your project that uses Branch is selected.
    - Click **Add**.
+
+### Android Configuration
+
+1. [Add](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) dependencies.
+2. Configure `AndroidManifest.xml` file.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android">
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+	<application
+      		android:allowBackup="true"
+      		android:name="com.example.android.CustomApplicationClass"
+      		android:icon="@mipmap/ic_launcher"
+      		android:label="@string/app_name"
+      		android:supportsRtl="true"
+      		android:theme="@style/AppTheme">
+		<!-- Launcher Activity to handle incoming Branch intents -->
+		<activity
+        		android:name=".LauncherActivity"
+        		android:launchMode="singleTask"
+        		android:label="@string/app_name"
+        		android:theme="@style/AppTheme.NoActionBar"
+        		android:exported="true">
+
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+
+			<!-- Branch URI Scheme -->
+			<intent-filter>
+				<!-- If utilizing $deeplink_path please explicitly declare your hosts, or utilize a wildcard(*) -->
+				<!-- REPLACE `android:scheme` with your Android URI scheme -->
+				<data android:scheme="yourapp" android:host="open" />
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+			</intent-filter>
+
+			<!-- Branch App Links - Live App -->
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<!-- REPLACE `android:host` with your `app.link` domain -->
+				<data android:scheme="https" android:host="example.app.link" />
+				<!-- REPLACE `android:host` with your `-alternate` domain (required for proper functioning of App Links and Deepviews) -->
+				<data android:scheme="https" android:host="example-alternate.app.link" />
+			</intent-filter>
+
+			<!-- Branch App Links - Test App -->
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="https" android:host="example.test-app.link" />
+				<!-- REPLACE `android:host` with your `-alternate` domain (required for proper functioning of App Links and Deepviews) -->
+				<data android:scheme="https" android:host="example-alternate.test-app.link" />
+			</intent-filter>
+		</activity>
+
+		<!-- Branch init -->
+		<!-- REPLACE `BranchKey` with the value from your Branch Dashboard -->
+		<meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_XXX" />
+		<!-- REPLACE `BranchKey.test` with the value from your Branch Dashboard -->
+		<meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_XXX" />
+		<!-- Set to `true` to use `BranchKey.test` -->
+		<meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
+
+	</application>
+</manifest>
+```
+
+3. Add a branch.json file to your project, which you will use to access certain Branch configuration settings.
+   - Create an empty file called `branch.json`.
+   - Place the file in the `src/main/assets` folder of your app.
 
 # 4. Initialize Branch
 

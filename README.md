@@ -1,8 +1,6 @@
-# Setup dynamic link by banch.io
+# Config deeplink using Branch.io
 
-> react-native-branch ^6.2.2
-
-## Configure [Branch](dashboard.branch.io) dashboard
+Register your [app](https://dashboard.branch.io/)
 
 # 1. Configure Branch Dashboard
 
@@ -19,6 +17,8 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 ## iOS App With CocoaPods
 
+1. Add the following code to your Podfile in order to install Branch
+
 ```ruby
     platform :ios, '11.0'
 
@@ -29,6 +29,8 @@ Make sure to [configure your default link settings](https://help.branch.io/using
       pod 'react-native-branch', path: '../node_modules/react-native-branch'
     end
 ```
+
+2. Run the `pod install` command to regenerate the `Pods` project with the new dependencies. Please note that the location of `node_modules` relative to your Podfile may vary.
 
 # 3. Configure App
 
@@ -119,7 +121,7 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 </manifest>
 ```
 
-3. Add a branch.json file to your project, which you will use to access certain Branch configuration settings.
+3. Add a `branch.json` file to your project, which you will use to access certain Branch configuration settings.
    - Create an empty file called `branch.json`.
    - Place the file in the `src/main/assets` folder of your app.
 
@@ -146,7 +148,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions: [U
 }
 ```
 
-- Add openURL() Method
+- Add `openURL()` Method
 
 ```c
 func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -155,7 +157,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
 }
 ```
 
-- Add continueUserActivity() Method
+- Add `continueUserActivity()` Method
 
 ```c
 func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
@@ -168,7 +170,7 @@ func application(_ application: UIApplication, continue userActivity: NSUserActi
 
 To initialize Branch on Android, you need to:
 
-1. Add Branch to your `MainApplication.kt` file (or `MainApplication.java` for older apps):
+1. Add Branch to your `MainApplication.kt` file:
 
 - Import from RNBranch
 
@@ -176,7 +178,7 @@ To initialize Branch on Android, you need to:
 import io.branch.rnbranch.*
 ```
 
-- Override onCreate() Function
+- Override `onCreate()` Function
 
 ```kotlin
 override fun onCreate() {
@@ -209,7 +211,7 @@ override fun onCreate() {
 }
 ```
 
-2. Add Branch to your `MainActivity.kt` file (or `MainActivity.java` for older apps):
+2. Add Branch to your `MainActivity.kt` file:
 
 - Import from RNBranch
 
@@ -217,7 +219,7 @@ override fun onCreate() {
 import io.branch.rnbranch.*
 ```
 
-- Override onStart() Function
+- Override `onStart()` Function
 
 ```kotlin
 override fun onStart() {
@@ -226,7 +228,7 @@ override fun onStart() {
 }
 ```
 
-- Override onNewIntent() Function
+- Override `onNewIntent()` Function
 
 ```kotlin
 override fun onNewIntent(intent: Intent?) {
@@ -262,7 +264,7 @@ Check your Xcode logs to make sure all the SDK integration tests pass.
 > - Checking for bundle identifier correctness ... Passed
 > - Checking for iOS Team ID correctness ... Passed
 
-Make sure to comment out or remove `validateSDKIntegration()` in your production build.
+**Make sure to comment out or remove `validateSDKIntegration()` in your production build.**
 
 For more about the `validateSDKIntegration()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)
 
@@ -305,6 +307,6 @@ Check your ADB Logcat to make sure all the SDK integration tests pass.
 > - Verifying default link domains integrations. ... Passed
 > - Verifying alternate link domains integrations. ... Passed Passed
 
-Make sure to comment out or remove `IntegrationValidator.validate()` in your production build.
+**Make sure to comment out or remove `IntegrationValidator.validate()` in your production build.**
 
 For more about the `IntegrationValidator.validate()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)

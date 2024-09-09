@@ -32,7 +32,7 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 # 3. Configure App
 
-### For Android
+### iOS Configuration
 
 1. [Add](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) dependencies.
 2. [Configure](https://help.branch.io/developers-hub/docs/android-basic-integration#3-add-dependencies) `AndroidManifest.xml` file.
@@ -40,7 +40,7 @@ Make sure to [configure your default link settings](https://help.branch.io/using
    - Create an empty file called `branch.json`.
    - Place the file in the `src/main/assets` folder of your app.
 
-### For iOS
+### Android Configuration
 
 1. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#2-configure-bundle-identifier) bundle identifier.
 2. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#3-configure-associated-domains) associated domains.
@@ -51,10 +51,94 @@ Make sure to [configure your default link settings](https://help.branch.io/using
    - Select the `branch.json` file and make sure every target in your project that uses Branch is selected.
    - Click **Add**.
 
+# 4. Initialize Branch
+
+### Branch Initialization on iOS
+
+To initialize Branch on iOS, add the following to your app's AppDelegate file:
+
+```c
+#import "AppDelegate.h"
+#import <RNBranch/RNBranch.h>
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // [RNBranch useTestInstance];
+    [RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
+    NSURL *jsCodeLocation;
+    //...
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  [RNBranch application:app openURL:url options:options];
+  return YES;
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
+  [RNBranch continueUserActivity:userActivity];
+  return YES;
+}
+
+@end
+```
+
+### Branch Initialization on Android
+
+To initialize Branch on Android, you need to:
+
+1. Add Branch to your `MainApplication.kt` file (or `MainApplication.java` for older apps):
+
+```kotlin
+import io.branch.rnbranch.*
+
+// ...
+
+override fun onCreate() {
+    super.onCreate()
+    RNBranchModule.getAutoInstance(this)
+
+    SoLoader.init(this, false)
+    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+        // If you opted-in for the New Architecture, we load the native entry point for this app
+        load()
+    }
+
+    RNBranchModule.enableLogging();
+
+    ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager)
+}
+
+// ...
+```
+
+2. Add Branch to your `MainActivity.kt` file (or `MainActivity.java` for older apps):
+
+```kotlin
+import io.branch.rnbranch.*
+import android.content.Intent
+
+// ...
+
+override fun onStart() {
+    super.onStart()
+    RNBranchModule.initSession(getIntent().getData(), this)
+}
+
+override fun onNewIntent(intent: Intent?) {
+    super.onNewIntent(intent)
+    setIntent(intent)
+    RNBranchModule.reInitSession(this)
+}
+
+// ...
+```
+
 ## validate SDK Integration
 
-```bash
-    IntegrationValidator.validate(this)
+```javascript
+IntegrationValidator.validate(this);
 ```
 
 ------------------- Initiating Branch integration verification --------------------------- ...

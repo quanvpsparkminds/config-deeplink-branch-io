@@ -39,7 +39,6 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 1. Configure bundle identifier.
   - Find the `bundle identifier` for the relevant target associated with your project in Xcode, under the ***Signing & Capabilities*** tab
-  ![alt](https://ibb.co/yF8FVJH)
   - Return to the Configuration [page](https://dashboard.branch.io/configuration/general) of the Branch Dashboard, and use the ***Add New Bundle ID*** button to add your Bundle ID
 2. Configure associated domains.
   - In your Branch Dashboard, navigate to the ***Link Domain*** section of the Configuration page.

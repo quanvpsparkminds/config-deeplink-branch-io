@@ -38,11 +38,12 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 ### iOS Configuration
 
 1. Configure bundle identifier.
-  - Find the `bundle identifier` for the relevant target associated with your project in Xcode, under the **Signing & Capabilities** tab
-  - Return to the [Configuration](https://dashboard.branch.io/configuration/general) page of the Branch Dashboard, and use the **Add New Bundle ID** button to add your Bundle ID
+  - Find the `bundle identifier` for the relevant target associated with your project in Xcode, under the ***Signing & Capabilities*** tab
+  ![alt](https://i.ibb.co/VYvY38f/Screenshot-2024-09-10-at-16-43-27.png)
+  - Return to the Configuration [page](https://dashboard.branch.io/configuration/general) of the Branch Dashboard, and use the ***Add New Bundle ID*** button to add your Bundle ID
 2. Configure associated domains.
-  - In your Branch Dashboard, navigate to the **Link Domain** section of the Configuration page.
-  - Return to the **Signing & Capabilities** tab in Xcode, and add the domains from your Branch Dashboard to your project's target
+  - In your Branch Dashboard, navigate to the ***Link Domain*** section of the Configuration page.
+  - Return to the ***Signing & Capabilities*** tab in Xcode, and add the domains from your Branch Dashboard to your project's target
     - Use `applinks:subdomain.app.link` for the format.
     - The `-alternate` flag is required to ensure proper functioning of Universal Links and [Deepviews](https://help.branch.io/using-branch/docs/deepviews) for users that do not have your app installed.
     - The `.test` flag is required if you need to use a test key.

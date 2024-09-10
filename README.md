@@ -1,3 +1,20 @@
+# React-native document
+
+- Java: 17.0.0-zulu
+- Node: v21.6.1
+
+Run Android:
+
+```bash
+npx react-natice run-android
+```
+
+Run iOS:
+
+```bash
+npx react-native run-ios --simulator=\"iPhone 15 Pro Max\"
+```
+
 # Config deeplink using Branch.io
 
 Register your [app](https://dashboard.branch.io/)
@@ -358,3 +375,16 @@ Check your ADB Logcat to make sure all the SDK integration tests pass.
 > - Verifying alternate link domains integrations. ... Passed Passed
 
 **Make sure to comment out or remove** `IntegrationValidator.validate()` **in your production build.**
+
+# 6. Testing
+
+Create a deep link using the [Branch Dashboard](https://dashboard.branch.io/quick-links/manager)
+
+### For iOS
+....
+
+### For Android
+
+1. Compile and re-install your app on the device.
+2. Paste the deep link in a different app on the device - somewhere that you'll be able to click the link from.
+3. Click the deep link. Your app should open and route you to the proper screen.

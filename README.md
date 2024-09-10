@@ -39,13 +39,17 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 1. Configure bundle identifier.
   - Find the `bundle identifier` for the relevant target associated with your project in Xcode, under the ***Signing & Capabilities*** tab
+  ![alt](https://files.readme.io/c5c29c9-Screenshot_2023-06-02_at_12.14.14_PM.png)
   - Return to the Configuration [page](https://dashboard.branch.io/configuration/general) of the Branch Dashboard, and use the ***Add New Bundle ID*** button to add your Bundle ID
+  ![alt](https://files.readme.io/032d377-Screenshot_2023-06-02_at_12.17.52_PM.png)
 2. Configure associated domains.
   - In your Branch Dashboard, navigate to the ***Link Domain*** section of the Configuration page.
+  ![alt](https://files.readme.io/3a46faa-Screenshot_2023-06-02_at_12.26.03_PM.png)
   - Return to the ***Signing & Capabilities*** tab in Xcode, and add the domains from your Branch Dashboard to your project's target
     - Use `applinks:subdomain.app.link` for the format.
     - The `-alternate` flag is required to ensure proper functioning of Universal Links and [Deepviews](https://help.branch.io/using-branch/docs/deepviews) for users that do not have your app installed.
     - The `.test` flag is required if you need to use a test key.
+    ![alt](https://files.readme.io/04bd465-Screenshot_2023-06-02_at_1.07.03_PM.png)
 **Please note**: if you use a [custom link domain](https://help.branch.io/using-branch/docs/advanced-settings-configuration#section-change-link-domain), you will need to include your old link domain, your `-alternate` link domain, and your new link domain in your project.
 3. Configure `Info.plist` file.
 
@@ -286,7 +290,9 @@ override fun onNewIntent(intent: Intent?) {
 
 ### For iOS
 
-1. The [Integration Status](https://help.branch.io/developers-hub/docs/ios-testing#integration-status-tab) tab in the [Branch Dashboard](https://dashboard.branch.io/integration?_gl=1*1re0ydv*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzUyMDIuNjAuMC4w).
+1. The Integration Status tab in the [Branch Dashboard](https://dashboard.branch.io/integration?_gl=1*1re0ydv*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzUyMDIuNjAuMC4w).
+
+![alt](https://files.readme.io/5aae3c5-Screenshot_2024-04-04_at_12.43.06_PM.png)
 
 2. The Branch iOS SDK's Integration Validation method.
 
@@ -312,7 +318,7 @@ Check your Xcode logs to make sure all the SDK integration tests pass.
 
 ### For Android
 
-1. The [Integration Status](https://help.branch.io/developers-hub/docs/ios-testing#integration-status-tab) tab in the [Branch Dashboard](https://dashboard.branch.io/integration?_gl=1*1re0ydv*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzUyMDIuNjAuMC4w).
+1. The Integration Status tab in the [Branch Dashboard](https://dashboard.branch.io/integration?_gl=1*1re0ydv*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzUyMDIuNjAuMC4w).
 
 ![alt](https://files.readme.io/5aae3c5-Screenshot_2024-04-04_at_12.43.06_PM.png)
 

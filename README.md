@@ -310,11 +310,11 @@ Check your Xcode logs to make sure all the SDK integration tests pass.
 
 **Make sure to comment out or remove** `validateSDKIntegration()` **in your production build.**
 
-For more about the `validateSDKIntegration()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)
-
 ### For Android
 
 1. The [Integration Status](https://help.branch.io/developers-hub/docs/ios-testing#integration-status-tab) tab in the [Branch Dashboard](https://dashboard.branch.io/integration?_gl=1*1re0ydv*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzUyMDIuNjAuMC4w).
+
+![alt](https://files.readme.io/5aae3c5-Screenshot_2024-04-04_at_12.43.06_PM.png)
 
 2. The Branch Android SDK's Integration Validation method.
 
@@ -352,5 +352,3 @@ Check your ADB Logcat to make sure all the SDK integration tests pass.
 > - Verifying alternate link domains integrations. ... Passed Passed
 
 **Make sure to comment out or remove** `IntegrationValidator.validate()` **in your production build.**
-
-For more about the `IntegrationValidator.validate()` method, visit our [blog](https://www.branch.io/resources/blog/how-to-validate-your-branch-mobile-sdk-integration/?_gl=1*12347gp*_ga*MzU4MjkwNDEuMTcyNDA0MTg3OA..*_ga_KSDD8Y11CT*MTcyNTg3MjE4Ni4xMy4xLjE3MjU4NzcyMDcuMzEuMC4w#:~:text=Step%202%3A%20Utilize%20Branch%E2%80%99s%20Integration%20Validator)

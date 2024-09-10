@@ -37,9 +37,52 @@ Make sure to [configure your default link settings](https://help.branch.io/using
 
 ### iOS Configuration
 
-1. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#2-configure-bundle-identifier) bundle identifier.
-2. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#3-configure-associated-domains) associated domains.
-3. [Configure](https://help.branch.io/developers-hub/docs/ios-basic-integration#4-configure-infoplist) `Info.plist` file.
+1. Configure bundle identifier.
+  - Find the `bundle identifier` for the relevant target associated with your project in Xcode, under the **Signing & Capabilities** tab
+  - Return to the [Configuration](https://dashboard.branch.io/configuration/general) page of the Branch Dashboard, and use the **Add New Bundle ID** button to add your Bundle ID
+2. Configure associated domains.
+  - In your Branch Dashboard, navigate to the **Link Domain** section of the Configuration page.
+  - Return to the **Signing & Capabilities** tab in Xcode, and add the domains from your Branch Dashboard to your project's target
+    - Use `applinks:subdomain.app.link` for the format.
+    - The `-alternate` flag is required to ensure proper functioning of Universal Links and [Deepviews](https://help.branch.io/using-branch/docs/deepviews) for users that do not have your app installed.
+    - The `.test` flag is required if you need to use a test key.
+**Please note**: if you use a [custom link domain](https://help.branch.io/using-branch/docs/advanced-settings-configuration#section-change-link-domain), you will need to include your old link domain, your `-alternate` link domain, and your new link domain in your project.
+3. Configure `Info.plist` file.
+
+Add the following code to your `info.plist` file
+
+```xml
+<plist version="1.0">
+	<dict>
+		<key>branch_universal_link_domains</key>
+		<array>
+			<string>example.app.link</string> <!-- REPLACE `example.app.link` with your `app.link` domain -->
+			<string>example-alternate.app.link</string> <!-- REPLACE `example-alternate.app.link` with your `-alternate` domain (required for proper functioning of App Links and Deepviews) -->
+			<string>example.test-app.link</string> <!-- REPLACE `example.test-app.link` with your `test-app.link` domain -->
+		</array>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>branchsters</string>
+				</array>
+				<key>CFBundleURLName</key>
+				<string>io.Branch.Branchsters</string>
+			</dict>
+		</array>
+		<key>branch_key</key>
+		<dict>
+			<key>live</key>
+			<string>key_live_aaa000AAA</string> <!-- REPLACE `BranchKey` with the value from your Branch Dashboard -->
+			<key>test</key>
+			<string>key_test_bbb000BBB</string> <!-- REPLACE `BranchKey.test` with the value from your Branch Dashboard -->
+		</dict>
+	</dict>
+</plist>
+```
 4. Add a `branch.json` file to your project, which you will use to access certain Branch configuration settings:
    - Create an empty file called `branch.json`.
    - Add the file to your project using Xcode. Within your project, navigate to **File → Add Files**.
